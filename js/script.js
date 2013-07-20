@@ -3,21 +3,26 @@
     site = {
       sideMenu: function () {
         $('.menu-works .works').click( function (e) {
+          e.preventDefault();
           $(this).next('.works-menu').toggle(600);
         });
         $('.menu-works .works-menu a').click( function (e) {
+          e.preventDefault();
           var page = $(this).attr('href').substring(1);
           if ($('.works-menu').is(':hidden')){
             $('.works-menu').toggle(600);
           }
-          $.get(page + '.html', function (data) {
+          $.get(page, function (data) {
             site.replaceMain(data, site.gStart);
+            site.history(page);
             site.changeTitle('Danna Eran-Shamir | ' + site.capitalise(page)) ;
           });
         });
-        $('.menu-about a.about').click( function () {
+        $('.menu-about a.about').click( function (e) {
+          e.preventDefault();
           site.changeTitle('Danna Eran-Shamir | About');
           $.get('about.html', function (data) {
+            site.history('about.html');
             site.replaceMain(data, site.swithLang);
           });
         });
@@ -30,6 +35,12 @@
             site.replaceMain(data);
           }
         });
+      },
+      history: function (page) {
+        var p = page.substring(0, page.indexOf('.'));
+        if (p !== window.location.pathname.substring(1)){
+          history.pushState(null, document.title, p);
+        }
       },
       gStart: function () {
         $('#gstart').yoxview({
@@ -56,14 +67,17 @@
         $('div.about-text').quickFlip({openSpeed:600, closeSpeed:600});
         site.buildEml();
       },
-      hash: function () {
-        var hash = window.location.hash;
-        if(hash !== '') {
-          site.menuChange(hash);
+      loc: function () {
+        var section = window.location.pathname;
+        if(section !== '/') {
+          site.menuChange(section);
         }
       },
-      menuChange: function (hash) {
-        var item = $('.side-menu a[href=' + hash + ']');
+      menuChange: function (section) {
+        if (section === '') {
+          section = 'home';
+        }
+        var item = $('.side-menu a.' + section);
         item.click();
       },
       changeTitle: function (name) {
@@ -87,8 +101,11 @@
       init: function () {
         site.cacheHomeHtml();
         site.sideMenu();
-        site.hash();
+        site.loc();
         $('.side-menu').fitText(0.8, { minFontSize: '10px', maxFontSize: '24px' });
+        window.addEventListener("popstate", function(e) {
+          site.menuChange(location.pathname.substring(1));
+        });
       }
     };
     $(function () {
