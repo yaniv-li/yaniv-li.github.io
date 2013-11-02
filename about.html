@@ -1,22 +1,21 @@
 <div class="about-text">
   <div class="en-text">
-    <a href="#" class="lang he quickFlipCta">עברית</a>
+    <a href="#" class="lang he">עברית</a>
     <p class=text>
-      Born in 1977, at kibbutz Malkiya in the Upper-Galilee of Israel. Lived in New-York city, U.S.A with her family as a child, between 1985 - 1987. Lived and worked in the city of Haifa, Israel between 1999 - 2008. Today lives and works in kibbutz Malkiya.<br /><br />
+      Born in 1977, at kibbutz Malkiya in the Upper-Galilee of Israel. Lived in New-York city, U.S.A with her family as a child, between 1985 - 1987. Lived and worked in the city of Haifa, Israel between 1999 - 2008. Today lives and works in kibbutz Malkiya.
     </p>
       <ul class="text">
         <li>B.A in Art and in Philosophy, University of Haifa, since 2004.</li>
         <li>Owns an Art Therapist diploma from the University of Haifa, since 2008.</li>
       </ul>
-    <br />
-      <b>Shows &amp; Exhibitions:</b><br />
+      <b>Shows &amp; Exhibitions:</b>
       <ul class="text">
         <li>June 2004, “Northerners” - Selected works of Art Majors of the University of Haifa, Zaritsky Artists House Gallery, Tel-Aviv.</li>
         <li>June 2006 - Artists and the Students Organization of Tel-Aviv for Coexistence, Tel-Aviv University, Tel-Aviv.</li>
       </ul>
   </div>
-  <div class="he-text">
-    <a href="#" class="lang en quickFlipCta">English</a>
+  <div class="he-text hidden">
+    <a href="#" class="lang en">English</a>
     <p class="text">
       ילידת 1977. נולדה וגדלה בקיבוץ מלכיה שבגליל-העליון. בילדותה שהתה עם משפחתה בניו-יורק, ארה"ב בין השנים 1985 - 1987. התגוררה ויצרה בחיפה בין השנים 1999 - 2008. כיום מתגוררת ויוצרת בקיבוץ מלכיה.<br /><br />
     </p>
@@ -31,4 +30,9 @@
         </ul>
   </div>
 </div>
-<div class="mal hidden"></div>
+<script>
+    site.swithLang();
+    if ($('.email-link').is(':hidden')) {
+        $('.email-link').fadeIn();
+    }
+</script>
