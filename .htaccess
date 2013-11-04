@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/(index\.php|images|css|js|robots\.txt|favicon\.ico|yoxview|thumbs)
+RewriteRule ^(.+)$ /?sec=$1 [R,QSA,L]
